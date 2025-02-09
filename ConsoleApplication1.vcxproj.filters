@@ -21,12 +21,15 @@
     <ClCompile Include="DynamicArray.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CORE.h">
+      <Filter>Header Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DynamicArray.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="core.h">
+    <ClInclude Include="INCL.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

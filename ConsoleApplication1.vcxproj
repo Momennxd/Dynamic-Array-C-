@@ -128,10 +128,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ConsoleApplication1.cpp" />
+    <ClCompile Include="CORE.h" />
     <ClCompile Include="DynamicArray.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="core.h" />
+    <ClInclude Include="INCL.h" />
     <ClInclude Include="DynamicArray.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

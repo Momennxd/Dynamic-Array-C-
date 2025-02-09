@@ -1,6 +1,6 @@
 #pragma once
 
-#include "core.h"
+#include "INCL.h"
 
 
 
@@ -35,6 +35,8 @@ public:
 
 	int indexOf(int value);
 	
+	int Update(int index, int newValue);
+
 	int at(int index) const;
 
 	int size() const;
@@ -45,8 +47,13 @@ public:
 	DynamicArray(int capacity);
 	bool operator==(const DynamicArray& arr1) const;
 	bool operator!=(const DynamicArray& arr1) const;
-	int operator [] (int index);
 
-	virtual ~DynamicArray();
+	int operator [] (int index) const;
+	int& operator[](int index);   
+
+	
+
+
+	 ~DynamicArray();
 
 };

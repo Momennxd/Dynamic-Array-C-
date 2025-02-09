@@ -22,7 +22,7 @@ void DynamicArray::_shift(int* array, int size, int start, int end, int steps)
 {
 	if (start + steps < 0 || end + steps >= size 
 		|| start < 0 || end >= size || size < 0 || array == nullptr)
-		throw std::out_of_range("Shifting M&A2004 lolee siad is not possible: Out of bounds.");
+		OUT_OF_BOUNDS("Shifting M&A2004 lolee siad is not possible: Out of bounds.");
 
 	if (steps == 0 || size == 0) return;
 
@@ -43,7 +43,7 @@ void DynamicArray::_init(int capacity)
 
 void DynamicArray::insertAt(int index, int value)
 {
-	if (index < 0 || index >= this->_t_size) throw std::out_of_range("out of bounds M&A2004 lolee siad is not possible");
+	if (index < 0 || index >= this->_t_size) OUT_OF_BOUNDS("out of bounds M&A2004 lolee siad is not possible");
 	if (this->_t_size + 1 > this->_t_capacity) {
 		this->_t_capacity *= this->DEFAULT_GROWTH_RATE;
 		this->_array =
@@ -70,7 +70,7 @@ void DynamicArray::push(int value)
 
 void DynamicArray::deleteAt(int index)
 {
-	if (index < 0 || index >= this->_t_size) throw std::out_of_range("Index out of bounds");
+	if (index < 0 || index >= this->_t_size) OUT_OF_BOUNDS("Index out of bounds");
 
 	this->_shift(this->_array, this->_t_capacity, index + 1, this->_t_size - 1, -1);
 
@@ -108,9 +108,16 @@ int DynamicArray::indexOf(int value)
 	return -1;
 }
 
+int DynamicArray::Update(int index, int newValue)
+{
+	if (index < 0 || index >= this->_t_size) OUT_OF_BOUNDS("Index out of bounds");
+
+	this->_array[index] = newValue;
+}
+
 int DynamicArray::at(int index) const
 {
-	if (index < 0 || index >= this->_t_size) throw std::out_of_range("Index out of bounds");
+	if (index < 0 || index >= this->_t_size) OUT_OF_BOUNDS("Index out of bounds");
 	return this->_array[index];
 }
 
@@ -126,7 +133,7 @@ int DynamicArray::capacity() const
 
 DynamicArray::DynamicArray()
 {
-	_init();
+	_init(this->DEFAULT_CAPACITY);
 }
 
 DynamicArray::DynamicArray(int capacity)
@@ -150,12 +157,20 @@ bool DynamicArray::operator!=(const DynamicArray& arr1) const
 	return !(*this == arr1); 
 }
 
-int DynamicArray::operator[](int index)
+int DynamicArray::operator[](int index) const
 {
 	return this->at(index);
+}
+
+int& DynamicArray::operator[](int index) {
+
+	if (index < 0 || index >= _t_size) OUT_OF_BOUNDS("Index out of range");
+	
+	return _array[index];
 }
 
 DynamicArray::~DynamicArray()
 {
 	delete[] this->_array;
 }
+

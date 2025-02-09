@@ -19,8 +19,8 @@ int main() {
     arr.push(21);
     arr.push(21);
     arr.push(21);
-    arr.deleteAt(0);
 
+    arr.deleteElement(21);
 
     for (int i = 0; i < arr.size(); i++) {
         cout << arr[i] << endl;

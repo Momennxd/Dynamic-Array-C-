@@ -1,13 +1,6 @@
+
 #pragma once
 
 
-#include<math.h>;
-
-#include<string>;
-
-
-#include<iostream>;
-
-
-#include<algorithm>;
+#define OUT_OF_BOUNDS(MESSAGE) throw std::out_of_range(MESSAGE);
 
