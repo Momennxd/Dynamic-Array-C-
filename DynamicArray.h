@@ -44,13 +44,18 @@ public:
 	int capacity() const;
 
 	DynamicArray();
+	DynamicArray(const DynamicArray& dynamicArray);
+	DynamicArray(DynamicArray&& dynamicArray) noexcept;
+
+
+
 	DynamicArray(int capacity);
 	bool operator==(const DynamicArray& arr1) const;
 	bool operator!=(const DynamicArray& arr1) const;
 
 	int operator [] (int index) const;
 	int& operator[](int index);   
-
+	DynamicArray& operator = (const DynamicArray& dynamicArray);
 	
 
 

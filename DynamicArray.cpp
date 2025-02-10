@@ -136,6 +136,24 @@ DynamicArray::DynamicArray()
 	_init(this->DEFAULT_CAPACITY);
 }
 
+DynamicArray::DynamicArray(const DynamicArray& dynamicArray)
+{
+	std::cout << "copy constructor" << std::endl;
+	this->_array = this->_copy(dynamicArray._array, dynamicArray._t_size, dynamicArray._t_size);
+	this->_t_size = dynamicArray._t_size;
+	this->_t_capacity = dynamicArray._t_capacity;
+}
+
+DynamicArray::DynamicArray(DynamicArray&& dynamicArray) noexcept
+{
+	std::cout << "move constructor" << std::endl;
+	this->_array = dynamicArray._array;
+	this->_t_size = dynamicArray._t_size;
+	this->_t_capacity = dynamicArray._t_capacity;
+
+	dynamicArray._array = nullptr; dynamicArray._t_size = 0; dynamicArray._t_capacity = 0;
+}
+
 DynamicArray::DynamicArray(int capacity)
 {
 	capacity = capacity < 0 ? this->DEFAULT_CAPACITY : capacity;
@@ -165,8 +183,17 @@ int DynamicArray::operator[](int index) const
 int& DynamicArray::operator[](int index) {
 
 	if (index < 0 || index >= _t_size) OUT_OF_BOUNDS("Index out of range");
-	
+
 	return _array[index];
+}
+
+DynamicArray& DynamicArray::operator=(const DynamicArray& dynamicArray)
+{
+	this->_array = this->_copy(dynamicArray._array, dynamicArray._t_size, dynamicArray._t_size);
+	this->_t_size = dynamicArray._t_size;
+	this->_t_capacity = dynamicArray._t_capacity;
+
+	return *this;
 }
 
 DynamicArray::~DynamicArray()
